@@ -4,9 +4,14 @@ gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails'
+end
 
-gem 'sqlite3'
-
+group :test do
+  gem 'capybara'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,3 +41,26 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+group :production do
+  gem 'pg'
+end
+
+# IMPORTANT! Some of the defaults have changed in Capybara 2.1. If you're experiencing failures,
+# please revert to the old behaviour by setting:
+# 
+#     Capybara.configure do |config|
+#       config.match = :one
+#       config.exact_options = true
+#       config.ignore_hidden_elements = true
+#       config.visible_text_only = true
+#     end
+# 
+# If you're migrating from Capybara 1.x, try:
+# 
+#     Capybara.configure do |config|
+#       config.match = :prefer_exact
+#       config.ignore_hidden_elements = false
+#     end
+# 
+# Details here: http://www.elabs.se/blog/60-introducing-capybara-2-1
